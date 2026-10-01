@@ -4,7 +4,7 @@ title: Profielmigratie
 ---
 # 5.4 Modelmigratie naar een ander MIM-profiel
 
-# Generiek stappenplan: migratie van een willekeurig profiel naar VNGR MIM 1-2 Grouping NL
+Generiek stappenplan: migratie van een willekeurig profiel naar VNGR MIM 1-2 Grouping NL
 
 ## Doel en reikwijdte
 Dit stappenplan beschrijft hoe een Enterprise Architect-model (of een package daarin) wordt gemigreerd van een willekeurig bronprofiel naar het doelprofiel **VNGR MIM 1-2 Grouping NL**. Het is afgeleid van de RSGB-migratie (VNGR_SIM_Grouping_NL → VNGR MIM 1.2 Grouping NL) en gebruikt dezelfde scripts:
