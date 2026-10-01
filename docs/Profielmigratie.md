@@ -14,8 +14,6 @@ Dit stappenplan beschrijft hoe een Enterprise Architect-model (of een package da
 
 De scriptnamen en enkele variabelenamen (zoals `CONFIRMED_VNGR_SIM_REMOVED`) zijn historisch; ze werken voor elk bronprofiel zodra het configuratieblok hieronder is ingevuld en overgenomen in de scripts.
 
----
-
 ## 1. Configuratieblok (per migratie invullen)
 
 De configuratie staat bovenin elk script. Hieronder per script de variabelen die per migratie moeten worden ingevuld of gecontroleerd. De twee scripts gebruiken voor de doelprofielnaam elk een eigen variabele (`TARGET_TECHNOLOGY_QUALIFIER_FOR_VERIFICATION` en `TARGET_PROFILE_NAME`); die moeten dezelfde waarde hebben. Paden staan in de voorbeelden zoals ze in het script worden geschreven (met dubbele backslashes).
@@ -62,16 +60,12 @@ Voor het vervangen van de FQNames in de XMI zijn nog drie gegevens nodig die in 
 
 Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL`, `CUSTOM_TAG_ACTIONS`, `STEREOTYPE_REMAP`) horen **per migratie opnieuw** te worden bepaald; neem de RSGB-inhoud niet ongezien over.
 
----
-
 ## 2. Voorwaarden
 
 - Het doel-MDG-bestand staat in de MDGTechnologies-map en `VNGRMIM1-2NL` is in *Manage-Tech* aangevinkt.
 - Het bronprofiel is (nog) beschikbaar in EA voor stap 0 en 1.
 - Er is een backup van het project; bij versiebeheer is de uitgangsrevisie genoteerd.
 - Geen openstaande, niet-ingecheckte wijzigingen in de betrokken packages.
-
----
 
 ## 3. Vooronderzoek (eenmalig per model)
 
@@ -82,8 +76,6 @@ Vergelijk de stereotypenamen (het deel na `::`) met de lijst in de bijlage. Voor
 
 ### 3.2 Enumeratiewaarden
 Controleer of de waarden van enumeraties in het bronmodel een stereotype hebben. Zo niet, dan koppelt de eindopschoning ze aan `Enumeratiewaarde` (`LINK_ENUM_LITERALS = true`), mits de enumeratie zelf het stereotype `Enumeratie` krijgt. Heeft de enumeratie in de bron een ander stereotype, voeg dat toe aan `ENUM_OWNER_STEREOTYPES`.
-
----
 
 ## 4. Stappenplan
 
@@ -174,8 +166,6 @@ Het script stopt de hele run zodra EA een stereotype niet overneemt; er blijven 
 3. Bij versiebeheer: de packages in het nieuwe project onder versiebeheer brengen en inchecken.
 4. Rapporten (inventarisatie, eindopschoning) bewaren bij de migratiedocumentatie.
 
----
-
 ## 5. Bijzondere situaties
 
 - **Meerdere bronprofielen of restanten van eerdere pogingen.** Alle voorvoegsels uit §3.1 behalve het doelprofiel als overig voorvoegsel (§1c) in stap 2c meenemen. Het inventarisatiescript kent maar één bronprofiel; tags van een tweede bronprofiel verschijnen daar als "onbekend".
@@ -184,15 +174,11 @@ Het script stopt de hele run zodra EA een stereotype niet overneemt; er blijven 
 - **Version-controlled packages.** Na een "Get Latest" komen tags via XMI 1.1 los van het profiel terug. Draai de eindopschoning dus pas nadat het nieuwe project zelf onder versiebeheer staat en ingecheckt is, of opnieuw na een herlaadactie.
 - **Toolbox van het doelprofiel.** In het huidige MDG-bestand (Imvertor 4.4.0) verwijst de toolbox naar `VNGR MIM 1.2 Grouping NL::…` terwijl het profiel `VNGR MIM 1-2 Grouping NL` heet. Nieuwe elementen uit de toolbox krijgen daardoor een niet-bestaand profiel, totdat het MDG-bestand opnieuw is gegenereerd zonder punt in de naam.
 
----
-
 ## 6. Technische achtergrond (kort)
 - Stereotype-koppeling zit in `t_xref` (`Name='Stereotypes'`); in XMI zichtbaar als `$ea_xref_property` met `@STEREO;Name=<Stereotype>;FQName=<Profielnaam>::<Stereotype>;@ENDSTEREO`.
 - Een tagged value wordt alleen aan een profiel gekoppeld op het moment dat een stereotype wordt **toegekend**; losse `TaggedValues.AddNew()` levert altijd een los tag op. Daarom werkt de eindopschoning met de 4-stappen-methode (leeg → tussenstereotype → leeg → doelstereotype) en zet daarna de waarden terug.
 - EA laat een `StereotypeEx`-toekenning met een onbekende profielnaam stilzwijgend vallen.
 - `IsTechnologyLoaded(id)` en `GetTechnologyXML(id)` werken alleen voor technologies die in het model zijn geïmporteerd; voor een technology uit de MDGTechnologies-map is `IsTechnologyEnabled(id)` bepalend en wordt het profiel uit het bestand gelezen.
-
----
 
 ## Bijlage: stereotypes in VNGR MIM 1-2 Grouping NL
 
