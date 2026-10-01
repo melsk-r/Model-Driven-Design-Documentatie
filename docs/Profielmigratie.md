@@ -31,7 +31,7 @@ De configuratie staat bovenin elk script. Hieronder per script de variabelen die
 | `TARGET_TECHNOLOGY_ID` | Id van de doeltechnology (vast) | — | `VNGRMIM1-2NL` |
 | `TARGET_TECHNOLOGY_QUALIFIER_FOR_VERIFICATION` | Naam van het doel-UML-profiel, het FQName-voorvoegsel (vast) **&lt;-- Is 'De namespace van de stereotypes en tagged values in het doel-UML-profiel en waarin deze terecht moeten komen, zoals die in de FQNames van het model (voor de dubbele punt) moet komen te staan' niet duidelijker?** | — | `VNGR MIM 1-2 Grouping NL` |
 | `TARGET_PROFILE_XML_FALLBACK` | Pad naar het doel-MDG-bestand | het doel-MDG-bestand of een kopie daarvan | `C:\\temp\\VNGR_MIM_1.2_Grouping_NL_ea-toolbox.xml` |
-| `TARGET_LABEL` | Korte naam voor rapporten (alleen weergave) | vrij te kiezen | `VNGR MIM 1-2 Grouping NL` **&lt;-- Moet dit niet gelijk zijn aan de variabele met dezelfde naam in het 'Migratie_eindopschoning.js'-script? Dus 'VNGR_MIM_1.2_Grouping_NL'.** |
+| `TARGET_LABEL` | Korte naam voor rapporten (alleen weergave) | vrij te kiezen | `VNGR_MIM_1.2_Grouping_NL` |
 | `ROOT_PACKAGE_GUID` | GUID van de package die gemigreerd wordt | eigenschappen van de package in EA | `{…}` **&lt;-- Mij is niet duidelijk wat er hier nu precies wordt verwacht maar misschien wordt dat verderop duidelijk. In dat geval beter om hier naar die stap te verwijzen.** |
 | `OUTPUT_HTML_PATH` | Pad van het rapport; per migratie een eigen naam | vrij te kiezen | `C:\\temp\\Migratie_inventarisatie_VNGR_SIM_naar_VNGRMIM12.html` |
 | `APPLY_CHANGES` | `false` = dry-run, `true` = wijzigingen doorvoeren | — | `false` |
