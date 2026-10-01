@@ -16,21 +16,23 @@ De scriptnamen en enkele variabelenamen (zoals `CONFIRMED_VNGR_SIM_REMOVED`) zij
 
 ## 1. Configuratieblok (per migratie invullen)
 
+**!!!!!!!!!!!! Persoonlijk zou ik deze configuratie in een bijlage plaatsen. Dus eerst het proces uitleggen en dan de procedure stap voor stap beschrijven en daarin verwijzen naar de bijlage !!!!!!!!!!!!!!!!**
+
 De configuratie staat bovenin elk script. Hieronder per script de variabelen die per migratie moeten worden ingevuld of gecontroleerd. De twee scripts gebruiken voor de doelprofielnaam elk een eigen variabele (`TARGET_TECHNOLOGY_QUALIFIER_FOR_VERIFICATION` en `TARGET_PROFILE_NAME`); die moeten dezelfde waarde hebben. Paden staan in de voorbeelden zoals ze in het script worden geschreven (met dubbele backslashes).
 
 ### 1a. Inventarisatiescript (`Migratie_inventarisatie_VNGR_SIM_naar_VNGRMIM12.js`)
 
 | Variabele | Betekenis | Waar vind je het | Voorbeeld (RSGB) |
 |---|---|---|---|
-| `SOURCE_TECHNOLOGY_ID` | Id van de brontechnology | MDG-bestand: `<MDG.Technology><Documentation id="…">`, of *Specialize > Technologies > Manage-Tech* | `VNGRSNL` |
-| `SOURCE_TECHNOLOGY_QUALIFIER_NAME` | Naam van het bron-UML-profiel, zoals die in de FQNames van het model staat | MDG-bestand: `<UMLProfile><Documentation name="…">`, en controleren met de telling in §3.1 | `VNGR SIM+Grouping NL` |
+| `SOURCE_TECHNOLOGY_ID` | Id van de brontechnology | MDG-bestand: `<MDG.Technology><Documentation id="…">`, of *Specialize > Technologies > Manage-Tech* **&lt;-- Dit laatste maakt het voor mij al niet duidelijk wat je dan moet gebruiken (laat staan voor iemand die wat minder diep in EA zit. Ik vermoed de vet gedrukte titel in het menu rechtsboven.** | `MIGNL` |
+| `SOURCE_TECHNOLOGY_QUALIFIER_NAME` | Naam van het bron-UML-profiel, zoals die in de FQNames van het model staat **&lt;-- Is 'De namespace waarin de stereotypes en tagged values in het bron-UML-profiel staan, dus zoals die in de FQNames van het model (voor de dubbele punt) staat' niet duidelijker?** | MDG-bestand: `<UMLProfile><Documentation name="…">`, en controleren met de telling in §3.1 | `VNGR SIM+Grouping NL` |
 | `SOURCE_PROFILE_XML_FALLBACK` | Pad naar het MDG-/profielbestand van de bron | eigen bestandsbeheer | `C:\\temp\\VNGR_SIM_Grouping_NL-1_0-1_67_1_ea-toolbox.xml` |
 | `SOURCE_LABEL` | Korte naam voor rapporten en logs (alleen weergave) | vrij te kiezen | `VNGR_SIM_Grouping_NL` |
 | `TARGET_TECHNOLOGY_ID` | Id van de doeltechnology (vast) | — | `VNGRMIM1-2NL` |
-| `TARGET_TECHNOLOGY_QUALIFIER_FOR_VERIFICATION` | Naam van het doel-UML-profiel, het FQName-voorvoegsel (vast) | — | `VNGR MIM 1-2 Grouping NL` |
+| `TARGET_TECHNOLOGY_QUALIFIER_FOR_VERIFICATION` | Naam van het doel-UML-profiel, het FQName-voorvoegsel (vast) **&lt;-- Is 'De namespace van de stereotypes en tagged values in het doel-UML-profiel en waarin deze terecht moeten komen, zoals die in de FQNames van het model (voor de dubbele punt) moet komen te staan' niet duidelijker?** | — | `VNGR MIM 1-2 Grouping NL` |
 | `TARGET_PROFILE_XML_FALLBACK` | Pad naar het doel-MDG-bestand | het doel-MDG-bestand of een kopie daarvan | `C:\\temp\\VNGR_MIM_1.2_Grouping_NL_ea-toolbox.xml` |
-| `TARGET_LABEL` | Korte naam voor rapporten (alleen weergave) | vrij te kiezen | `VNGR_MIM_1.2_Grouping_NL` |
-| `ROOT_PACKAGE_GUID` | GUID van de package die gemigreerd wordt | eigenschappen van de package in EA | `{…}` |
+| `TARGET_LABEL` | Korte naam voor rapporten (alleen weergave) | vrij te kiezen | `VNGR MIM 1-2 Grouping NL` **&lt;-- Moet dit niet gelijk zijn aan de variabele met dezelfde naam in het 'Migratie_eindopschoning.js'-script? Dus 'VNGR_MIM_1.2_Grouping_NL'.** |
+| `ROOT_PACKAGE_GUID` | GUID van de package die gemigreerd wordt | eigenschappen van de package in EA | `{…}` **&lt;-- Mij is niet duidelijk wat er hier nu precies wordt verwacht maar misschien wordt dat verderop duidelijk. In dat geval beter om hier naar die stap te verwijzen.** |
 | `OUTPUT_HTML_PATH` | Pad van het rapport; per migratie een eigen naam | vrij te kiezen | `C:\\temp\\Migratie_inventarisatie_VNGR_SIM_naar_VNGRMIM12.html` |
 | `APPLY_CHANGES` | `false` = dry-run, `true` = wijzigingen doorvoeren | — | `false` |
 
@@ -38,27 +40,27 @@ De configuratie staat bovenin elk script. Hieronder per script de variabelen die
 
 | Variabele | Betekenis | Voorbeeld (RSGB) |
 |---|---|---|
-| `ROOT_PACKAGE_GUID` | GUID van de package **in het nieuwe project** (na stap 2) | `{…}` |
+| `ROOT_PACKAGE_GUID` | GUID van de package **in het nieuwe project** (na stap 2) | `{…}` **&lt;-- Mij is niet duidelijk wat er hier nu precies wordt verwacht maar misschien wordt dat verderop duidelijk. In dat geval beter om hier naar die stap te verwijzen.** |
 | `TARGET_TECHNOLOGY_ID` | Id van de doeltechnology (vast) | `VNGRMIM1-2NL` |
-| `TARGET_PROFILE_NAME` | Naam van het doel-UML-profiel, het FQName-voorvoegsel (vast) | `VNGR MIM 1-2 Grouping NL` |
-| `TARGET_PROFILE_XML_FALLBACK` | Pad naar het doel-MDG-bestand | `file:///C:/Users/…/MDGTechnologies/VNGR%20MIM%201.2%20Grouping%20NL.ea-toolbox.xml` |
+| `TARGET_PROFILE_NAME` | Naam van het doel-UML-profiel, het FQName-voorvoegsel (vast) **&lt;-- Is 'De namespace van de stereotypes en tagged values in het doel-UML-profiel en waarin deze terecht moeten komen, zoals die in de FQNames van het model (voor de dubbele punt) moet komen te staan' niet duidelijker?** | `VNGR MIM 1-2 Grouping NL` |
+| `TARGET_PROFILE_XML_FALLBACK` | Pad naar het doel-MDG-bestand | `file:///C:/Users/…/MDGTechnologies/VNGR%20MIM%201.2%20Grouping%20NL.ea-toolbox.xml` **&lt;-- Klopt dit pad wel? Moeten er geen dubbele backslashes gebruikt worden?** |
 | `TARGET_LABEL` | Korte naam voor rapporten (alleen weergave) | `VNGR_MIM_1.2_Grouping_NL` |
 | `APPLY_CHANGES` | `false` = dry-run, `true` = wijzigingen doorvoeren | `false` |
 | `CONFIRMED_VNGR_SIM_REMOVED` | `true` als het **bronprofiel** volledig verwijderd is (naam is historisch, geldt voor elk bronprofiel) | `true` |
-| `STEREOTYPE_REMAP` | Stereotypes zonder equivalent → doelstereotype (gelijk aan die in het inventarisatiescript) | `{}` |
+| `STEREOTYPE_REMAP` | Stereotypes zonder equivalent → doelstereotype (gelijk aan die in het inventarisatiescript) | `{}` **&lt;-- Mij is niet duidelijk wat er hier nu precies wordt verwacht maar misschien wordt dat verderop duidelijk. In dat geval beter om hier naar die stap te verwijzen.** |
 | `LINK_ENUM_LITERALS`, `ENUM_LITERAL_STEREOTYPE`, `ENUM_OWNER_STEREOTYPES` | Koppelen van enumeratiewaarden zonder stereotype | `true`, `"Enumeratiewaarde"`, `["Enumeratie"]` |
 
-> **Let op:** EA gebruikt in FQNames de **profielnaam** (`VNGR MIM 1-2 Grouping NL`, met streepje), niet de technologynaam (`VNGR MIM 1.2 Grouping NL`, met punt) of het id. Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` wordt door EA stilzwijgend genegeerd.
+> **Let op:** EA gebruikt in FQNames de **profielnaam** (`VNGR MIM 1-2 Grouping NL`, met streepje), niet de technologynaam (`VNGR MIM 1.2 Grouping NL`, met punt) of het id. Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` is dus niet correct al zal EA het niet rapporteren.
 
 ### 1c. Gegevens voor de handmatige stap 2 (niet in de scripts)
 
 Voor het vervangen van de FQNames in de XMI zijn nog drie gegevens nodig die in geen van de scripts staan:
 
-- **het XMI-bestand** van de export (bijv. `C:\temp\SIM_RSGB.xml`);
-- **de codering** uit de eerste regel van dat bestand (`encoding="…"`, bij RSGB `windows-1252`);
-- **overige FQName-voorvoegsels**: profielnamen naast `SOURCE_TECHNOLOGY_QUALIFIER_NAME` die in het model voorkomen en ook naar het doelprofiel moeten (restanten van eerdere pogingen of een tweede bronprofiel; bij RSGB `VNGR MIM 1.2 Grouping NL`). Deze volgen uit de telling in §3.1.
+- **de locatie van het geëxporteerde XMI-bestand** (bijv. `C:\temp\SIM_RSGB.xml`);
+- **de codering** uit de eerste regel van dat bestand (`encoding="…"`, bij RSGB `windows-1252`) **&lt;-- Hoe ben jij er achter gekomen dat dit voor het RSGB de codering is?**;
+- **overige FQName-voorvoegsels**: profielnamen naast `SOURCE_TECHNOLOGY_QUALIFIER_NAME` die in het model voorkomen en ook naar het doelprofiel moeten (restanten van eerdere pogingen of een tweede bronprofiel; bij RSGB `VNGR MIM 1.2 Grouping NL`). Deze volgen uit de telling in §3.1. **&lt;-- Checken of de uitleg daar meer duidelijkheid schept.**
 
-Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL`, `CUSTOM_TAG_ACTIONS`, `STEREOTYPE_REMAP`) horen **per migratie opnieuw** te worden bepaald; neem de RSGB-inhoud niet ongezien over.
+Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL`, `CUSTOM_TAG_ACTIONS`, `STEREOTYPE_REMAP`) horen **per migratie opnieuw** te worden bepaald; neem de RSGB-inhoud niet ongezien over. **&lt;-- Ik neem aan dat dit verderop beter wordt uitgelegd.**
 
 ## 2. Voorwaarden
 
