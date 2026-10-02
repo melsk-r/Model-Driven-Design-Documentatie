@@ -50,6 +50,7 @@ De configuratie staat bovenin elk script. Hieronder per script de variabelen die
 | `STEREOTYPE_REMAP` | Stereotypes zonder equivalent → doelstereotype (gelijk aan die in het inventarisatiescript) | `{}` **&lt;-- OPM. ROBERT: Mij is niet duidelijk wat er hier nu precies wordt verwacht maar misschien wordt dat verderop duidelijk. In dat geval beter om hier naar die stap te verwijzen.** |
 | `LINK_ENUM_LITERALS`, `ENUM_LITERAL_STEREOTYPE`, `ENUM_OWNER_STEREOTYPES` | Koppelen van enumeratiewaarden zonder stereotype | `true`, `"Enumeratiewaarde"`, `["Enumeratie"]` |
 
+> [!WARNING]
 > **Let op:** EA gebruikt in FQNames de **profielnaam** (`VNGR MIM 1-2 Grouping NL`, met streepje), niet de technologynaam (`VNGR MIM 1.2 Grouping NL`, met punt) of het id. Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` is dus niet correct al zal EA het niet rapporteren.
 
 ### 1c. Gegevens voor de handmatige stap 2 (niet in de scripts)
@@ -72,7 +73,7 @@ Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL
 ## 3. Vooronderzoek (eenmalig per model)
 
 ### 3.1 Welke profielen staan er in het model?
-Controleer welk profiel gebruikt is bij het opstellen van het model en welke Stereotypes daar bij horen. Controleer tevens welke tagged values er bij die stereotypes zijn gebruikt en of er "profielloze" tagged values zijn gebruikt, tagged values dus die handmatig zijn aangemaakt. **&lt;-- Dit zou nog wel eens een stap zijn die veel tijd vergt. Zeker als je veel modellen om te zetten hebt. Kunnen we dit makkelijker maken m.b.v. een script?**
+Controleer welk profiel gebruikt is bij het opstellen van het model en welke Stereotypes daar bij horen. Controleer tevens welke tagged values er bij die stereotypes zijn gebruikt en of er "profielloze" tagged values zijn gebruikt, tagged values dus die handmatig zijn aangemaakt. **&lt;-- OPM. ROBERT: Dit zou nog wel eens een stap zijn die veel tijd vergt. Zeker als je veel modellen om te zetten hebt. Kunnen we dit makkelijker maken m.b.v. een script?**
 
 Vergelijk de stereotypenamen (het deel na `::`) met de lijst in de bijlage. Voor elk stereotype dat in het doelprofiel **niet** bestaat, een doelstereotype kiezen en opnemen in `STEREOTYPE_REMAP` (in beide scripts) als die te remappen is. Let ook op het metatype: het doelstereotype moet gelden voor hetzelfde soort modelelement (zie kolom *Geldt voor* in de bijlage).
 
