@@ -66,7 +66,7 @@ Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL
 
 - Het doel-MDG-bestand staat in de MDGTechnologies-map en `VNGRMIM1-2NL` is in *Manage-Tech* aangevinkt.
 - Het bronprofiel is (nog) beschikbaar in EA voor stap 0 en 1 maar is in *Manage-Tech* niet meer aangevinkt.
-- Er is een backup van het project; bij versiebeheer is de uitgangsrevisie genoteerd. **&lt;-- OPM. ROBERT: Bedoel je niet dat er een backup is van het XMI bestand? Het project omvat n.m.m. de gehele <project> KING: SIM folder.**
+- Er is een backup van het project; bij versiebeheer is de uitgangsrevisie genoteerd. **&lt;-- OPM. ROBERT: Bedoel je niet dat er een backup is van het XMI bestand? Het project omvat n.m.m. de gehele '&lt;project> KING: SIM' folder.**
 - Geen openstaande, niet-ingecheckte wijzigingen in de betrokken packages. **&lt;-- OPM. ROBERT: Je schrijft hier packages (in meervoud). Worden er naast het package dat we omzetten ook andere packages geraakt?**
 
 ## 3. Vooronderzoek (eenmalig per model)
