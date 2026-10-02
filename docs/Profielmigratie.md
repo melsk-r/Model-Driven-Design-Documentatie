@@ -54,9 +54,7 @@ De configuratie staat bovenin elk script. Hieronder per script de variabelen die
 
 **OPM. ROBERT: Misschien beter om het blok hierboven als volgt te tonen!**
 
-> Let op:
-
-EA gebruikt in FQNames de **profielnaam** en niet de technologynaam of het id. Dus bijv. **NIET** `VNGR MIM 1.2 Grouping NL`, met een puntje, maar **WEL** `VNGR MIM 1-2 Grouping NL`, met een streepje.<br/>Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` is dus niet correct al zal EA het niet melden als een fout.
+> <span style="color: white; font-weight: bold;">Let op:</span><br/><br/>EA gebruikt in FQNames de <span style="color: white; font-weight: bold;">profielnaam**</span> en niet de technologynaam of het id. Dus bijv. <span style="color: white; font-weight: bold;">NIET</span> <span style="color: white; font-family: 'Courier New', Courier, monospace;">VNGR MIM 1.2 Grouping NL</span>, met een puntje, maar <span style="color: white; font-weight: bold;">WEL</span> <span style="color: white; font-family: 'Courier New', Courier, monospace;">VNGR MIM 1-2 Grouping NL</span>, met een streepje.<br/>Het juiste formaat is <span style="color: white; font-family: 'Courier New', Courier, monospace;">VNGR MIM 1-2 Grouping NL::Objecttype</span>. Een toekenning met <span style="color: white; font-family: 'Courier New', Courier, monospace;">VNGR MIM 1.2 Grouping NL::…</span> is dus niet correct al zal EA het niet melden als een fout.
 
 ### 1c. Gegevens voor de handmatige stap 2 (niet in de scripts)
 
