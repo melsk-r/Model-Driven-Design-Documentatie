@@ -124,7 +124,7 @@ Hiermee wordt de stereotype-koppeling van alle modelelementen in één keer van 
 
    Veilige manier in PowerShell (behoudt de codering; schrijft naar een nieuw bestand):
 
-   ```powershell
+```powershell
    $in  = 'C:\temp\model.xml'
    $uit = 'C:\temp\model_naar_VNGRMIM12.xml'
    $enc = [Text.Encoding]::GetEncoding(1252)   # gelijk aan de codering van de XMI
@@ -137,7 +137,7 @@ Hiermee wordt de stereotype-koppeling van alle modelelementen in één keer van 
        $t = $t.Replace($zoek, $doel)
    }
    [IO.File]::WriteAllText($uit, $t, $enc)
-   ```
+```
 **!!!!!!!!!!!!! OPM. ROBERT: Moet in bovenstaand script de bestandsnaam en locatie niet nog evt. aangepast worden? Ik vermoed dat in de derde regel van het script hierboven het beter is het commentaar te wijzigen in '# gelijk aan de in stap 3b.5 gevonden codering'. Klopt dat? Ik zie trouwens dat de encoding in dit script '1252' is, moet dat niet 'Windows-1252' zijn? !!!!!!!!!!!!!**
 
    Doe je het in een teksteditor (bijv. Notepad++): gewoon tekst-zoeken gebruiken, geen reguliere expressie (tekens als `+` en `.` hebben daar een speciale betekenis), en opslaan in dezelfde codering als het origineel. **&lt;-- OPM. ROBERT: In Notepad++ geef je de codering voorafgaand aan het opslaan aan in het menu 'Encoding'.** EA schrijft de XMI als één lange regel. 
