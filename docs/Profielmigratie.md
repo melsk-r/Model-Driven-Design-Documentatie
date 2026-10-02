@@ -106,7 +106,7 @@ Hiermee wordt de stereotype-koppeling van alle modelelementen in één keer van 
 
 **3a. Voorbereiden**
 1. Backup maken; uitgangsrevisie noteren. **&lt;-- OPM. ROBERT: Maak je hier een backup van wat je in stap 2.5 hebt ingecheckt? Zo ja, die backup heb je dus al.**
-2. Controleren dat `VNGRMIM1-2NL` aangevinkt is. **&lt;-- OPM. ROBERT: Wijzig 'aangevinkt is' in 'in *Mange-Tech* aangevinkt is'.**
+2. Controleren dat `VNGRMIM1-2NL` aangevinkt is. **&lt;-- OPM. ROBERT: Wijzig 'aangevinkt is' in 'in *Manage-Tech* aangevinkt is'.**
 
 **3b. Exporteren**
 3. De package (`ROOT_PACKAGE_GUID`) exporteren naar XMI 1.1. **&lt;-- OPM. ROBERT: Is dat niet het resultaat dat je in stap 2.5 hebt ingecheckt?**
@@ -124,26 +124,27 @@ Hiermee wordt de stereotype-koppeling van alle modelelementen in één keer van 
 
    Veilige manier in PowerShell (behoudt de codering; schrijft naar een nieuw bestand):
 
-```powershell
-$in  = 'C:\temp\model.xml'
-$uit = 'C:\temp\model_naar_VNGRMIM12.xml'
-$enc = [Text.Encoding]::GetEncoding(1252)   # gelijk aan de codering van de XMI
-$t   = [IO.File]::ReadAllText($in, $enc)
-$doel = 'FQName=VNGR MIM 1-2 Grouping NL::'
-foreach ($bron in @('VNGR SIM+Grouping NL', 'VNGR MIM 1.2 Grouping NL')) {   # SOURCE_TECHNOLOGY_QUALIFIER_NAME + overige voorvoegsels
-    $zoek = "FQName=${bron}::"
-    $n = ([regex]::Matches($t, [regex]::Escape($zoek))).Count
-    Write-Output "$zoek -> $n keer vervangen"
-    $t = $t.Replace($zoek, $doel)
-}
-[IO.File]::WriteAllText($uit, $t, $enc)
-```
+   ```powershell
+   $in  = 'C:\temp\model.xml'
+   $uit = 'C:\temp\model_naar_VNGRMIM12.xml'
+   $enc = [Text.Encoding]::GetEncoding(1252)   # gelijk aan de codering van de XMI
+   $t   = [IO.File]::ReadAllText($in, $enc)
+   $doel = 'FQName=VNGR MIM 1-2 Grouping NL::'
+   foreach ($bron in @('VNGR SIM+Grouping NL', 'VNGR MIM 1.2 Grouping NL')) {   # SOURCE_TECHNOLOGY_QUALIFIER_NAME + overige voorvoegsels
+       $zoek = "FQName=${bron}::"
+       $n = ([regex]::Matches($t, [regex]::Escape($zoek))).Count
+       Write-Output "$zoek -> $n keer vervangen"
+       $t = $t.Replace($zoek, $doel)
+   }
+   [IO.File]::WriteAllText($uit, $t, $enc)
+   ```
+
 **!!!!!!!!!!!!! OPM. ROBERT: Moet in bovenstaand script de bestandsnaam en locatie niet nog evt. aangepast worden? Ik vermoed dat in de derde regel van het script hierboven het beter is het commentaar te wijzigen in '# gelijk aan de in stap 3b.5 gevonden codering'. Klopt dat? Ik zie trouwens dat de encoding in dit script '1252' is, moet dat niet 'Windows-1252' zijn? !!!!!!!!!!!!!**
 
    Doe je het in een teksteditor (bijv. Notepad++): gewoon tekst-zoeken gebruiken, geen reguliere expressie (tekens als `+` en `.` hebben daar een speciale betekenis), en opslaan in dezelfde codering als het origineel. **&lt;-- OPM. ROBERT: In Notepad++ geef je de codering voorafgaand aan het opslaan aan in het menu 'Encoding'.** EA schrijft de XMI als één lange regel. 
 8. Controleren met de telling uit §3.1 op het nieuwe bestand: **&lt;-- OPM. ROBERT: Wijzig 'Controleren' in 'Controleer'.**
    - geen FQNames met `SOURCE_TECHNOLOGY_QUALIFIER_NAME` of een overig voorvoegsel meer; **&lt;-- OPM. ROBERT: Wijzig in 'of er geen FQNames-voorvoegsel met de in `SOURCE_TECHNOLOGY_QUALIFIER_NAME` vastgelegde waarde of een andere FQName-voorvoegsel meer zijn;'**
-   - het aantal `VNGR MIM 1-2 Grouping NL` is gelijk aan de som van wat vervangen is (plus wat er eventueel al stond). **&lt;-- OPM. ROBERT: Wijzig in 'of het aantal FQNames-voorvoegsel met de waarde `VNGR MIM 1-2 Grouping NL` gelijk aan de som van wat vervangen is (plus wat er eventueel al stond). Zie stap 3c.6.'**
+   - het aantal `VNGR MIM 1-2 Grouping NL` is gelijk aan de som van wat vervangen is (plus wat er eventueel al stond). **&lt;-- OPM. ROBERT: Wijzig deze zin in 'of het aantal FQNames-voorvoegsel met de waarde `VNGR MIM 1-2 Grouping NL` gelijk aan de som van wat vervangen is (plus wat er eventueel al stond). Zie stap 3c.6.'**
 
 **3d. Bronprofiel verwijderen en importeren**
 9. Het bronprofiel **volledig verwijderen** (Resources-boom > Delete Profile, of de technology uitschakelen/verwijderen in *Manage-Tech*), niet alleen deactiveren. **&lt;-- OPM. ROBERT: Ik heb aangenomen dat deactiveren al eerder gebeurd moest zijn. Ik kan trouwens in *manage-Tech* geen profielen verwijderen. Jij wel? Ik doe dit door deze profielen gewoon op het filesysteem te verwijderen.**
@@ -151,37 +152,37 @@ foreach ($bron in @('VNGR SIM+Grouping NL', 'VNGR MIM 1.2 Grouping NL')) {   # S
 11. De aangepaste XMI importeren.
 12. Steekproef: bij enkele elementen, attributen en connectoren controleren dat het stereotype uit `VNGR MIM 1-2 Grouping NL` komt.
 
-Na deze stap hangen de **stereotypes** aan het doelprofiel, maar de **tagged values** nog niet: XMI 1.1 neemt de koppeling tussen tag en profiel niet mee. Stereotypes zonder equivalent in het doelprofiel hebben nu een FQName die naar een niet-bestaand stereotype wijst; die worden in stap 3 via `STEREOTYPE_REMAP` rechtgezet.
+Na deze stap hangen de **stereotypes** aan het doelprofiel, maar de **tagged values** nog niet: XMI 1.1 neemt de koppeling tussen tag en profiel niet mee. Stereotypes zonder equivalent in het doelprofiel hebben nu een FQName die naar een niet-bestaand stereotype wijst; die worden in stap 3 via `STEREOTYPE_REMAP` rechtgezet. **&lt;-- OPM. ROBERT: Checken of dit klopt.**
 
 ### Stap 4 — Eindopschoning (in het nieuwe project)
-1. Configuratie invullen (§1b), met `ROOT_PACKAGE_GUID` van de package **in het nieuwe project**, en `STEREOTYPE_REMAP` gelijk aan die uit stap 1.
-2. **Dry-run** (`APPLY_CHANGES = false`). Controleer in het uitvoervenster:
+1. Configuratie invullen in het Eindopschoningscript(§1b), met `ROOT_PACKAGE_GUID` van de package **in het nieuwe project**, en `STEREOTYPE_REMAP` gelijk aan die uit stap 1. **&lt;-- OPM. ROBERT: Wijzig 'Configuratie invullen (§1b)' in 'Configuratie invullen in het Eindopschoningscript(§1b)'**
+2. **Dry-run** (`APPLY_CHANGES = false`). Controleer in het uitvoervenster: **&lt;-- OPM. ROBERT: Wat zie jij als het uitvoervenster? Staan daar de hieronder genoemde categorieën in?**
    - Technology-id in de XML: `VNGRMIM1-2NL`;
    - Profielen in de technology-XML: bevat `VNGR MIM 1-2 Grouping NL`;
    - Controle technology: `enabled = true`;
-   - aantal objecten per stereotype en aantal enumeratiewaarden zonder stereotype;
+   - aantal objecten per stereotype en aantal enumeratiewaarden zonder stereotype; **&lt;-- OPM. ROBERT: Wat doe je hier dan mee?**
    - geen meldingen over objecten die aan een **ander** profiel hangen.
 3. Testen op een **kleine subpackage** met `APPLY_CHANGES = true` en `CONFIRMED_VNGR_SIM_REMOVED = true`.
-4. Rapport en model controleren (profieltabblad bij de tags, waarden teruggezet).
-5. Draaien over de hele package.
+4. Rapport en model controleren (profieltabblad bij de tags, waarden teruggezet). **&lt;-- OPM. ROBERT: Wat doe je hier dan mee?**
+5. Draaien over de hele package. **&lt;-- OPM. ROBERT: Wijzig deze zin in 'Indien alles correct pas het script dan toe op het gehele model.'**
 
-Het script stopt de hele run zodra EA een stereotype niet overneemt; er blijven dan geen reeksen objecten zonder stereotype achter.
+Het script stopt de hele run zodra EA een stereotype niet overneemt; er blijven dan geen reeksen objecten zonder stereotype achter. **&lt;-- OPM. ROBERT: Wat bedoej je hier dan mee? Is het dan klaar of kan het script ook stoppen voordat het helemaal klaar is. Zonder enige kennis van zaken lijkt het me dat er ook al voortijdig een stereotype niet wordt overgenomen.**
 
 ### Stap 5 — Nacontrole en afronding
 1. Inventarisatiescript nogmaals draaien als dry-run: `reportTechnologyLinkStatus` moet 0 objecten aan het bronprofiel tonen.
 2. Steekproef in EA op elk gebruikt stereotype.
-3. Bij versiebeheer: de packages in het nieuwe project onder versiebeheer brengen en inchecken.
-4. Rapporten (inventarisatie, eindopschoning) bewaren bij de migratiedocumentatie.
+3. Bij versiebeheer: de packages in het nieuwe project onder versiebeheer brengen en inchecken. **&lt;-- OPM. ROBERT: Misschien nog een beetje beter beschrijven hoe je dat doet. Je moet het bestand in SVN immers over een ander bestand overschrijven om het vervolgens als een nieuwe versie in te kunnen checken.**
+4. Rapporten (inventarisatie, eindopschoning) bewaren bij de migratiedocumentatie. **&lt;-- OPM. ROBERT: Misschien de structuur van de migratiedocumentatie beschrijven.**
 
 ## 5. Bijzondere situaties
 
-- **Meerdere bronprofielen of restanten van eerdere pogingen.** Alle voorvoegsels uit §3.1 behalve het doelprofiel als overig voorvoegsel (§1c) in stap 2c meenemen. Het inventarisatiescript kent maar één bronprofiel; tags van een tweede bronprofiel verschijnen daar als "onbekend".
-- **Objecten met een stereotype zonder FQName** (niet aan een profiel gekoppeld). Die worden in stap 2 niet geraakt. Beoordeel in de dry-run van de eindopschoning hoe ze behandeld worden voordat je een echte run doet.
-- **Stereotypes zonder equivalent.** Via `STEREOTYPE_REMAP` naar een bestaand doelstereotype met hetzelfde metatype. Controleer of het tussenstereotype dat de eindopschoning kiest voor dat metatype bestaat (voor attributen en associaties `Anoniem`, voor generalisaties `Static`).
-- **Version-controlled packages.** Na een "Get Latest" komen tags via XMI 1.1 los van het profiel terug. Draai de eindopschoning dus pas nadat het nieuwe project zelf onder versiebeheer staat en ingecheckt is, of opnieuw na een herlaadactie.
-- **Toolbox van het doelprofiel.** In het huidige MDG-bestand (Imvertor 4.4.0) verwijst de toolbox naar `VNGR MIM 1.2 Grouping NL::…` terwijl het profiel `VNGR MIM 1-2 Grouping NL` heet. Nieuwe elementen uit de toolbox krijgen daardoor een niet-bestaand profiel, totdat het MDG-bestand opnieuw is gegenereerd zonder punt in de naam.
+- **Meerdere bronprofielen of restanten van eerdere pogingen.** Alle voorvoegsels uit §3.1 behalve het doelprofiel als overig voorvoegsel (§1c) in stap 2c meenemen. Het inventarisatiescript kent maar één bronprofiel; tags van een tweede bronprofiel verschijnen daar als "onbekend". **&lt;-- OPM. ROBERT: Begrijp ik niet? Wijzig 'voorvoegsels' in 'FQName-voorvoegsels'.**
+- **Objecten met een stereotype zonder FQName** (niet aan een profiel gekoppeld). Die worden in stap 2 niet geraakt. Beoordeel in de dry-run van de eindopschoning hoe ze behandeld worden voordat je een echte run doet. **&lt;-- OPM. ROBERT: Wat moet je er dan mee doen?**
+- **Stereotypes zonder equivalent.** Via `STEREOTYPE_REMAP` naar een bestaand doelstereotype met hetzelfde metatype. Controleer of het tussenstereotype dat de eindopschoning kiest voor dat metatype bestaat (voor attributen en associaties `Anoniem`, voor generalisaties `Static`). **&lt;-- OPM. ROBERT: Begrijp ik niet?**
+- **Version-controlled packages.** Na een "Get Latest" komen tags via XMI 1.1 los van het profiel terug. Draai de eindopschoning dus pas nadat het nieuwe project zelf onder versiebeheer staat en ingecheckt is, of opnieuw na een herlaadactie. **&lt;-- OPM. ROBERT: Graag wat meer uitleg.**
+- **Toolbox van het doelprofiel.** In het huidige MDG-bestand (Imvertor 4.4.0) verwijst de toolbox naar `VNGR MIM 1.2 Grouping NL::…` terwijl het profiel `VNGR MIM 1-2 Grouping NL` heet. Nieuwe elementen uit de toolbox krijgen daardoor een niet-bestaand profiel, totdat het MDG-bestand opnieuw is gegenereerd zonder punt in de naam. **&lt;-- OPM. ROBERT: Waarom maken we dan geen profiel zonder die punt in de naam?**
 
-## 6. Technische achtergrond (kort)
+## 6. Technische achtergrond (kort) **&lt;-- OPM. ROBERT: Zegt me allemaal niet zo veel.**
 - Stereotype-koppeling zit in `t_xref` (`Name='Stereotypes'`); in XMI zichtbaar als `$ea_xref_property` met `@STEREO;Name=<Stereotype>;FQName=<Profielnaam>::<Stereotype>;@ENDSTEREO`.
 - Een tagged value wordt alleen aan een profiel gekoppeld op het moment dat een stereotype wordt **toegekend**; losse `TaggedValues.AddNew()` levert altijd een los tag op. Daarom werkt de eindopschoning met de 4-stappen-methode (leeg → tussenstereotype → leeg → doelstereotype) en zet daarna de waarden terug.
 - EA laat een `StereotypeEx`-toekenning met een onbekende profielnaam stilzwijgend vallen.
