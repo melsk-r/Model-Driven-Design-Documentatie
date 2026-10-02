@@ -57,7 +57,7 @@ De configuratie staat bovenin elk script. Hieronder per script de variabelen die
 Voor het vervangen van de FQNames in de XMI zijn nog drie gegevens nodig die in geen van de scripts staan:
 
 - **de locatie van het geëxporteerde XMI-bestand** (bijv. `C:\temp\SIM_RSGB.xml`);
-- **de codering** uit de eerste regel van dat bestand (`encoding="…"`, bij RSGB `windows-1252`) **&lt;-- Hoe ben jij er achter gekomen dat dit voor het RSGB de codering is?**;
+- **de codering** uit de eerste regel van dat bestand (`encoding="…"`, bij RSGB `windows-1252`) **&lt;-- Hoe ben jij er achter gekomen dat dit voor het RSGB de codering is en hoe komen anderen er achter welke encoding gebruikt moet worden?**;
 - **overige FQName-voorvoegsels**: profielnamen naast `SOURCE_TECHNOLOGY_QUALIFIER_NAME` die in het model voorkomen en ook naar het doelprofiel moeten (restanten van eerdere pogingen of een tweede bronprofiel; bij RSGB `VNGR MIM 1.2 Grouping NL`). Deze volgen uit de telling in §3.1. **&lt;-- Checken of de uitleg daar meer duidelijkheid schept.**
 
 Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL`, `CUSTOM_TAG_ACTIONS`, `STEREOTYPE_REMAP`) horen **per migratie opnieuw** te worden bepaald; neem de RSGB-inhoud niet ongezien over. **&lt;-- Ik neem aan dat dit verderop beter wordt uitgelegd.**
@@ -65,14 +65,14 @@ Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL
 ## 2. Voorwaarden
 
 - Het doel-MDG-bestand staat in de MDGTechnologies-map en `VNGRMIM1-2NL` is in *Manage-Tech* aangevinkt.
-- Het bronprofiel is (nog) beschikbaar in EA voor stap 0 en 1.
-- Er is een backup van het project; bij versiebeheer is de uitgangsrevisie genoteerd.
-- Geen openstaande, niet-ingecheckte wijzigingen in de betrokken packages.
+- Het bronprofiel is (nog) beschikbaar in EA voor stap 0 en 1 maar is in *Manage-Tech* niet meer aangevinkt.
+- Er is een backup van het project; bij versiebeheer is de uitgangsrevisie genoteerd. **&lt;-- Bedoel je niet dat er een backup is van het XMI bestand? Het project omvat n.m.m. de gehele '<project> KING: SIM' folder.**
+- Geen openstaande, niet-ingecheckte wijzigingen in de betrokken packages. **&lt;-- Je schrijft hier packages (in meervoud). Worden er naast het package dat we omzetten ook andere packages geraakt?**
 
 ## 3. Vooronderzoek (eenmalig per model)
 
 ### 3.1 Welke profielen staan er in het model?
-Controleer welk profiel gebruikt is bij het opstellen van het model en welke Stereotypes daar bij horen. Controleer tevens welke tagged values er bij die stereotypes zijn gebruikt en of er "profielloze" tagged values zijn gebruikt. 
+Controleer welk profiel gebruikt is bij het opstellen van het model en welke Stereotypes daar bij horen. Controleer tevens welke tagged values er bij die stereotypes zijn gebruikt en of er "profielloze" tagged values zijn gebruikt, tagged values dus die handmatig zijn aangemaakt. **&lt;-- Dit zou nog wel eens een stap zijn die veel tijd vergt. Zeker als je veel modellen om te zetten hebt. Kunnen we dit makkelijker maken m.b.v. een script?**
 
 Vergelijk de stereotypenamen (het deel na `::`) met de lijst in de bijlage. Voor elk stereotype dat in het doelprofiel **niet** bestaat, een doelstereotype kiezen en opnemen in `STEREOTYPE_REMAP` (in beide scripts) als die te remappen is. Let ook op het metatype: het doelstereotype moet gelden voor hetzelfde soort modelelement (zie kolom *Geldt voor* in de bijlage).
 
