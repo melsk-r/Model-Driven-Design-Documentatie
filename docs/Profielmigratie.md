@@ -50,10 +50,9 @@ De configuratie staat bovenin elk script. Hieronder per script de variabelen die
 | `STEREOTYPE_REMAP` | Stereotypes zonder equivalent → doelstereotype (gelijk aan die in het inventarisatiescript) | `{}` **&lt;-- OPM. ROBERT: Mij is niet duidelijk wat er hier nu precies wordt verwacht maar misschien wordt dat verderop duidelijk. In dat geval beter om hier naar die stap te verwijzen.** |
 | `LINK_ENUM_LITERALS`, `ENUM_LITERAL_STEREOTYPE`, `ENUM_OWNER_STEREOTYPES` | Koppelen van enumeratiewaarden zonder stereotype | `true`, `"Enumeratiewaarde"`, `["Enumeratie"]` |
 
-> [!WARNING]
-> EA gebruikt in FQNames de **profielnaam** (`VNGR MIM 1-2 Grouping NL`, met streepje), niet de technologynaam (`VNGR MIM 1.2 Grouping NL`, met punt) of het id. Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` is dus niet correct al zal EA het niet rapporteren.
+> **Let op:** EA gebruikt in FQNames de **profielnaam** (`VNGR MIM 1-2 Grouping NL`, met streepje), niet de technologynaam (`VNGR MIM 1.2 Grouping NL`, met punt) of het id. Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` is dus niet correct al zal EA het niet rapporteren.
 
-**Let op:** 
+> **Let op:** EA gebruikt in FQNames de *profielnaam* en niet de technologynaam of het id. Dus bijv. **NIET** 'VNGR MIM 1.2 Grouping NL', met een puntje, maar **WEL** 'VNGR MIM 1-2 Grouping NL', met een streepje.<br/>Het juiste formaat is 'VNGR MIM 1-2 Grouping NL::Objecttype'. Een toekenning met 'VNGR MIM 1.2 Grouping NL::…' is dus niet correct al zal EA het niet melden als een fout.
 
 ### 1c. Gegevens voor de handmatige stap 2 (niet in de scripts)
 
@@ -61,7 +60,7 @@ Voor het vervangen van de FQNames in de XMI zijn nog drie gegevens nodig die in 
 
 - **de locatie van het geëxporteerde XMI-bestand** (bijv. `C:\temp\SIM_RSGB.xml`);
 - **de codering** uit de eerste regel van dat bestand (`encoding="…"`, bij RSGB `windows-1252`) **&lt;-- OPM. ROBERT: Hoe ben jij er achter gekomen dat dit voor het RSGB de codering is en hoe komen anderen er achter welke encoding gebruikt moet worden?**;
-- **overige FQName-voorvoegsels**: profielnamen naast `SOURCE_TECHNOLOGY_QUALIFIER_NAME` die in het model voorkomen en ook naar het doelprofiel moeten (restanten van eerdere pogingen of een tweede bronprofiel; bij RSGB `VNGR MIM 1.2 Grouping NL`). Deze volgen uit de telling in §3.1. **&lt;-- OPM. ROBERT: Checken of de uitleg daar meer duidelijkheid schept.**
+- **overige FQName-voorvoegsels**: profielnamen naast `SOURCE_TECHNOLOGY_QUALIFIER_NAME` die in het model voorkomen en ook naar het doelprofiel moeten (restanten van eerdere pogingen of een tweede bronprofiel; bij RSGB `VNGR MIM 1.2 Grouping NL`). Deze volgen uit de telling in §3.1. **&lt;-- OPM. ROBERT: Checken of de uitleg daar meer duidelijkheid schept. Is de waarde `VNGR MIM 1.2 Grouping NL` in deze zin wel correct? In de 'LET OP' hierboven geef je immers aan dat je geen punt mag gebruiken in ee FQName.**
 
 Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL`, `CUSTOM_TAG_ACTIONS`, `STEREOTYPE_REMAP`) horen **per migratie opnieuw** te worden bepaald; neem de RSGB-inhoud niet ongezien over. **&lt;-- OPM. ROBERT: Ik neem aan dat dit verderop beter wordt uitgelegd.**
 
