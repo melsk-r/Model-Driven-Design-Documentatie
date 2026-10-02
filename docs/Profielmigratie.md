@@ -52,7 +52,9 @@ De configuratie staat bovenin elk script. Hieronder per script de variabelen die
 
 > **Let op:** EA gebruikt in FQNames de **profielnaam** (`VNGR MIM 1-2 Grouping NL`, met streepje), niet de technologynaam (`VNGR MIM 1.2 Grouping NL`, met punt) of het id. Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` is dus niet correct al zal EA het niet rapporteren.
 
-> **Let op:**
+**OPM. ROBERT: Misschien beter om het blok hierboven als volgt te tonen!**
+
+> Let op:
 
 EA gebruikt in FQNames de **profielnaam** en niet de technologynaam of het id. Dus bijv. **NIET** `VNGR MIM 1.2 Grouping NL`, met een puntje, maar **WEL** `VNGR MIM 1-2 Grouping NL`, met een streepje.<br/>Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` is dus niet correct al zal EA het niet melden als een fout.
 
