@@ -50,9 +50,9 @@ De configuratie staat bovenin elk script. Hieronder per script de variabelen die
 | `STEREOTYPE_REMAP` | Stereotypes zonder equivalent → doelstereotype (gelijk aan die in het inventarisatiescript) | `{}` **&lt;-- OPM. ROBERT: Mij is niet duidelijk wat er hier nu precies wordt verwacht maar misschien wordt dat verderop duidelijk. In dat geval beter om hier naar die stap te verwijzen.** |
 | `LINK_ENUM_LITERALS`, `ENUM_LITERAL_STEREOTYPE`, `ENUM_OWNER_STEREOTYPES` | Koppelen van enumeratiewaarden zonder stereotype | `true`, `"Enumeratiewaarde"`, `["Enumeratie"]` |
 
-> **Let op:** EA gebruikt in FQNames de **profielnaam** (`VNGR MIM 1-2 Grouping NL`, met streepje), niet de technologynaam (`VNGR MIM 1.2 Grouping NL`, met punt) of het id. Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` is dus niet correct al zal EA het niet rapporteren.
+> **Let op:** EA gebruikt in FQNames de **profielnaam** (`VNGR MIM 1-2 Grouping NL`, met streepje), niet de technologynaam (`VNGR MIM 1.2 Grouping NL`, met punt) of het id. Het juiste formaat is `VNGR MIM 1-2 Grouping NL::Objecttype`. Een toekenning met `VNGR MIM 1.2 Grouping NL::…` wordt door EA stilzwijgend genegeerd.
 
-**OPM. ROBERT: Misschien beter om het blok hierboven als volgt te tonen!**
+**!!!!!!!!!!!! OPM. ROBERT: Misschien beter om het blok hierboven als volgt te tonen !!!!!!!!!!!!!!!!**
 
 > <span style="color: white; font-weight: bold;">Let op:</span><br/><br/>EA gebruikt in FQNames de <span style="color: white; font-weight: bold;">profielnaam**</span> en niet de technologynaam of het id. Dus bijv. <span style="color: white; font-weight: bold;">NIET</span> <span style="color: white; font-family: 'Courier New', Courier, monospace;">VNGR MIM 1.2 Grouping NL</span>, met een puntje, maar <span style="color: white; font-weight: bold;">WEL</span> <span style="color: white; font-family: 'Courier New', Courier, monospace;">VNGR MIM 1-2 Grouping NL</span>, met een streepje.<br/>Het juiste formaat is <span style="color: white; font-family: 'Courier New', Courier, monospace;">VNGR MIM 1-2 Grouping NL::Objecttype</span>. Een toekenning met <span style="color: white; font-family: 'Courier New', Courier, monospace;">VNGR MIM 1.2 Grouping NL::…</span> is dus niet correct al zal EA het niet melden als een fout.
 
@@ -68,53 +68,53 @@ Model-specifieke mappings (`VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL
 
 ## 2. Voorwaarden
 
-- Het doel-MDG-bestand staat in de MDGTechnologies-map en `VNGRMIM1-2NL` is in *Manage-Tech* aangevinkt.
-- Het bronprofiel is (nog) beschikbaar in EA voor stap 0 en 1 maar is in *Manage-Tech* niet meer aangevinkt.
+- Het doel-MDG-bestand staat in de MDGTechnologies-map en `VNGRMIM1-2NL` is in *Manage-Tech* aangevinkt. **&lt;-- OPM. ROBERT: De tekst 'doel-MDG-bestand' zou ik hier wijzigen in 'doelprofiel (het nieuwe profiel/toolbox)'. Dan sluit je aan bij de elders in dit document gehanteerde begrippen.**
+- Het bronprofiel is (nog) beschikbaar in EA voor stap 0 en 1. **&lt;-- OPM. ROBERT: De tekst 'bronprofiel' zou ik hier wijzigen in 'bronprofiel (het oude profiel/toolbox)'. En vul de zin aan met ' maar is in *Manage-Tech* niet meer aangevinkt'.**
 - Er is een backup van het project; bij versiebeheer is de uitgangsrevisie genoteerd. **&lt;-- OPM. ROBERT: Bedoel je niet dat er een backup is van het XMI bestand? Het project omvat n.m.m. de gehele '&lt;project> KING: SIM' folder.**
 - Geen openstaande, niet-ingecheckte wijzigingen in de betrokken packages. **&lt;-- OPM. ROBERT: Je schrijft hier packages (in meervoud). Worden er naast het package dat we omzetten ook andere packages geraakt?**
 
 ## 3. Vooronderzoek (eenmalig per model)
 
 ### 3.1 Welke profielen staan er in het model?
-Controleer welk profiel gebruikt is bij het opstellen van het model en welke Stereotypes daar bij horen. Controleer tevens welke tagged values er bij die stereotypes zijn gebruikt en of er "profielloze" tagged values zijn gebruikt, tagged values dus die handmatig zijn aangemaakt. **&lt;-- OPM. ROBERT: Dit zou nog wel eens een stap zijn die veel tijd vergt. Zeker als je veel modellen om te zetten hebt. Kunnen we dit makkelijker maken m.b.v. een script?**
+Controleer welk profiel gebruikt is bij het opstellen van het model en welke Stereotypes daar bij horen. Controleer tevens welke tagged values er bij die stereotypes zijn gebruikt en of er "profielloze" tagged values zijn gebruikt. **&lt;-- OPM. ROBERT: Wijzig 'Controleer welk profiel gebruikt is bij het opstellen van het model' in 'Controleer in het bronmodel (het model dat je wil migreren naar het doelprofiel) welk profiel gebruikt is bij het opstellen van dat model'. Vul de laatste zin aan met ', tagged values dus die handmatig zijn aangemaakt'. Wat je hier beschrijft zou trouwens nog wel eens een stap zijn die veel tijd vergt. Zeker als je veel modellen om te zetten hebt. Kunnen we dit makkelijker maken m.b.v. een script? Dan wordt het vergelijken van de stereotypenamen ook wat eenvoudiger.**
 
-Vergelijk de stereotypenamen (het deel na `::`) met de lijst in de bijlage. Voor elk stereotype dat in het doelprofiel **niet** bestaat, een doelstereotype kiezen en opnemen in `STEREOTYPE_REMAP` (in beide scripts) als die te remappen is. Let ook op het metatype: het doelstereotype moet gelden voor hetzelfde soort modelelement (zie kolom *Geldt voor* in de bijlage).
+Vergelijk de stereotypenamen (het deel na `::`) met de lijst in de bijlage. Voor elk stereotype dat in het doelprofiel **niet** bestaat, een doelstereotype kiezen en opnemen in `STEREOTYPE_REMAP` (in beide scripts) als die te remappen is. Let ook op het metatype: het doelstereotype moet gelden voor hetzelfde soort modelelement (zie kolom *Geldt voor* in de bijlage). **&lt;-- OPM. ROBERT: Wat moet er met de gevonden tagged values gebeuren?**
 
 ### 3.2 Enumeratiewaarden
-Controleer of de waarden van enumeraties in het bronmodel een stereotype hebben. Zo niet, dan koppelt de eindopschoning ze aan `Enumeratiewaarde` (`LINK_ENUM_LITERALS = true`), mits de enumeratie zelf het stereotype `Enumeratie` krijgt. Heeft de enumeratie in de bron een ander stereotype, voeg dat toe aan `ENUM_OWNER_STEREOTYPES`.
+Controleer of de waarden **&lt;-- OPM. ROBERT: Wijzig 'waarden' in 'enumeratiewaarden'.** van enumeraties in het bronmodel een stereotype hebben. Zo niet, dan koppelt de eindopschoning ze aan `Enumeratiewaarde` (`LINK_ENUM_LITERALS = true`), mits de enumeratie zelf het stereotype `Enumeratie` krijgt. Heeft de enumeratie in de bron **&lt;-- OPM. ROBERT: Wijzig 'de bron' in 'het bronmodel'.** een ander stereotype, voeg dat toe aan `ENUM_OWNER_STEREOTYPES`. **&lt;-- OPM. ROBERT: Zorgt dat laatste er dan voor dat deze enumeratie na de eindopschoning het juiste stereotype heeft?.**
 
 ## 4. Stappenplan
 
 ### Stap 0 - Profielen en scripts installeren in Enterprise Architect
-1. Zorg dat het profiel [VNGR MIM 1-2 Grouping NL](./bestanden/VNGR%20MIM%201-2%20Grouping%20NL.ea-toolbox.xml) beschikbaar is (voor user) in het Enterpise Architect project. 
+1. Zorg dat het profiel [VNGR MIM 1-2 Grouping NL](./bestanden/VNGR%20MIM%201-2%20Grouping%20NL.ea-toolbox.xml) beschikbaar is (voor user) in het Enterpise Architect project. **&lt;-- OPM. ROBERT: Moet het bronprofiel niet ook meteen gedeactiveerd worden in *Manage-Tech* of moet dat pas later?**
 2. Zorg dat de scripts [Migratie-1 inventarisatie VNGR SIM naar MIM](./bestanden/Migratie-1%20inventarisatie%20VNGR%20SIM%20naar%20MIM) en [Migratie-3 eindopschoning Tagged values](./bestanden/Migratie-3%20eindopschoning%20Tagged%20values) in Enterprise Architect beschibaar zijn in de scripting module.
 
 ### Stap 1 — Check op oude schade
 1. Configuratie invullen in het inventarisatiescript (§1a).
 2. Inventarisatiescript draaien als **dry-run** (`APPLY_CHANGES = false`).
-3. In het log zoeken naar "GECORRUMPEERDE STEREOTYPE-NAAM". Zulke elementen eerst handmatig via de UI rechtzetten; de tag-logica verwijdert anders ten onrechte alle tags van zo'n element.
+3. In het log zoeken naar "GECORRUMPEERDE STEREOTYPE-NAAM". Zulke elementen eerst handmatig via de UI rechtzetten; de tag-logica verwijdert anders ten onrechte alle tags van zo'n element. **&lt;-- OPM. ROBERT: Het is me niet duidelijk wat je dan precies moet rechtzetten. Maar misschien wordt dat later duidelijk.**
 
 ### Stap 2 — Tags opschonen (bronprofiel staat nog aan)
 1. Dry-run-rapport doornemen: vervallen tags, onbekende tags, ongeldige enumeratiewaarden, lege verplichte velden.
 2. `VALUE_REMAP`, `TAG_REMAP`, `TAG_EXCLUDE_FROM_REMOVAL`, `CUSTOM_TAG_ACTIONS` en `STEREOTYPE_REMAP` voor dit model invullen.
 3. Opnieuw dry-run tot het rapport klopt.
 4. `APPLY_CHANGES = true` en draaien.
-5. Resultaat controleren; bij versiebeheer inchecken.
+5. Resultaat controleren; bij versiebeheer inchecken. **&lt;-- OPM. ROBERT: Waarom check je dat in dit stadium van het migratieproces al in?**
 
 ### Stap 3 — FQNames handmatig omzetten in de XMI (bewust niet gescript)
 Hiermee wordt de stereotype-koppeling van alle modelelementen in één keer van het bron- naar het doelprofiel verlegd. Importeer het resultaat **altijd in een nieuw, leeg project**: herimport in hetzelfde project kan elementen dupliceren (nieuwe GUID, ander package).
 
 **3a. Voorbereiden**
-1. Backup maken; uitgangsrevisie noteren.
-2. Controleren dat `VNGRMIM1-2NL` aangevinkt is.
+1. Backup maken; uitgangsrevisie noteren. **&lt;-- OPM. ROBERT: Maak je hier een backup van wat je in stap 2.5 hebt ingecheckt? Zo ja, die backup heb je dus al.**
+2. Controleren dat `VNGRMIM1-2NL` aangevinkt is. **&lt;-- OPM. ROBERT: Wijzig 'aangevinkt is' in 'in *Mange-Tech* aangevinkt is'.**
 
 **3b. Exporteren**
-3. De package (`ROOT_PACKAGE_GUID`) exporteren naar XMI 1.1.
-4. Een ongewijzigde kopie bewaren (`…_origineel.xml`).
+3. De package (`ROOT_PACKAGE_GUID`) exporteren naar XMI 1.1. **&lt;-- OPM. ROBERT: Is dat niet het resultaat dat je in stap 2.5 hebt ingecheckt?**
+4. Een ongewijzigde kopie bewaren (`…_origineel.xml`). **&lt;-- OPM. ROBERT: Eigenlijk weer een backup maken.**
 5. De codering noteren uit de eerste regel van het bestand (`encoding="…"`).
 
 **3c. FQNames vervangen**
-6. Per voorvoegsel tellen hoe vaak het voorkomt (script uit §3.1). Noteer de aantallen.
+6. Per voorvoegsel tellen hoe vaak het voorkomt (script uit §3.1). **&lt;-- OPM. ROBERT: In §3.1 staat geen script. Ik stel daar wel voor om een script te maken dus mooi als je dat al hebt. Wijzig hier 'voorvoegsel' in 'FQName-voorvoegsel'.** Noteer de aantallen.
 7. Vervangen, **altijd met `FQName=` ervoor en `::` erachter**, zodat vrije tekst (notities, definities) ongemoeid blijft:
 
    | Zoeken | Vervangen door |
@@ -138,14 +138,15 @@ Hiermee wordt de stereotype-koppeling van alle modelelementen in één keer van 
    }
    [IO.File]::WriteAllText($uit, $t, $enc)
    ```
+**!!!!!!!!!!!!! OPM. ROBERT: Moet in bovenstaand script de bestandsnaam en locatie niet nog evt. aangepast worden? Ik vermoed dat in de derde regel van het script hierboven het beter is het commentaar te wijzigen in '# gelijk aan de in stap 3b.5 gevonden codering'. Klopt dat? Ik zie trouwens dat de encoding in dit script '1252' is, moet dat niet 'Windows-1252' zijn? !!!!!!!!!!!!!**
 
-   Doe je het in een teksteditor (bijv. Notepad++): gewoon tekst-zoeken gebruiken, geen reguliere expressie (tekens als `+` en `.` hebben daar een speciale betekenis), en opslaan in dezelfde codering als het origineel. EA schrijft de XMI als één lange regel.
-8. Controleren met de telling uit §3.1 op het nieuwe bestand:
-   - geen FQNames met `SOURCE_TECHNOLOGY_QUALIFIER_NAME` of een overig voorvoegsel meer;
-   - het aantal `VNGR MIM 1-2 Grouping NL` is gelijk aan de som van wat vervangen is (plus wat er eventueel al stond).
+   Doe je het in een teksteditor (bijv. Notepad++): gewoon tekst-zoeken gebruiken, geen reguliere expressie (tekens als `+` en `.` hebben daar een speciale betekenis), en opslaan in dezelfde codering als het origineel. **&lt;-- OPM. ROBERT: In Notepad++ geef je de codering voorafgaand aan het opslaan aan in het menu 'Encoding'.** EA schrijft de XMI als één lange regel. 
+8. Controleren met de telling uit §3.1 op het nieuwe bestand: **&lt;-- OPM. ROBERT: Wijzig 'Controleren' in 'Controleer'.**
+   - geen FQNames met `SOURCE_TECHNOLOGY_QUALIFIER_NAME` of een overig voorvoegsel meer; **&lt;-- OPM. ROBERT: Wijzig in 'of er geen FQNames-voorvoegsel met de in `SOURCE_TECHNOLOGY_QUALIFIER_NAME` vastgelegde waarde of een andere FQName-voorvoegsel meer zijn;'**
+   - het aantal `VNGR MIM 1-2 Grouping NL` is gelijk aan de som van wat vervangen is (plus wat er eventueel al stond). **&lt;-- OPM. ROBERT: Wijzig in 'of het aantal FQNames-voorvoegsel met de waarde `VNGR MIM 1-2 Grouping NL` gelijk aan de som van wat vervangen is (plus wat er eventueel al stond). Zie stap 3c.6.'**
 
 **3d. Bronprofiel verwijderen en importeren**
-9. Het bronprofiel **volledig verwijderen** (Resources-boom > Delete Profile, of de technology uitschakelen/verwijderen in Manage-Tech), niet alleen deactiveren.
+9. Het bronprofiel **volledig verwijderen** (Resources-boom > Delete Profile, of de technology uitschakelen/verwijderen in *Manage-Tech*), niet alleen deactiveren. **&lt;-- OPM. ROBERT: Ik heb aangenomen dat deactiveren al eerder gebeurd moest zijn. Ik kan trouwens in *manage-Tech* geen profielen verwijderen. Jij wel? Ik doe dit door deze profielen gewoon op het filesysteem te verwijderen.**
 10. Een **nieuw, leeg project** aanmaken en controleren dat `VNGRMIM1-2NL` daar aangevinkt is.
 11. De aangepaste XMI importeren.
 12. Steekproef: bij enkele elementen, attributen en connectoren controleren dat het stereotype uit `VNGR MIM 1-2 Grouping NL` komt.
